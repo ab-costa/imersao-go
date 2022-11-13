@@ -41,3 +41,14 @@ func TestCaseShouldReturnANewOrderWhenNewOrderFunciontIsCalledWithValidParams(t 
 	assert.Equal(t, 2.0, order.Tax)
 	assert.Nil(t, err)
 }
+
+func TestCaseShouldReturnFinalPriceWhenNewCalculateFinalPriceFunciontIsCalled(t *testing.T) {
+	order, err := NewOrder("123", 10.0, 2.0)
+
+	assert.Nil(t, err)
+
+	order.CalculateFinalPrice()
+
+	assert.Nil(t, order.CalculateFinalPrice())
+	assert.Equal(t, 12.0, order.FinalPrice)
+}

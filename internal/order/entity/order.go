@@ -40,3 +40,15 @@ func (o *Order) IsValid() error {
 
 	return nil
 }
+
+func (o *Order) CalculateFinalPrice() error {
+	o.FinalPrice = o.Price + o.Tax
+
+	err := o.IsValid()
+
+	if err != nil {
+		return err
+	}
+
+	return nil
+}

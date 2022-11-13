@@ -1,5 +1,7 @@
 package entity
 
+import "errors"
+
 type Order struct {
 	ID         string
 	Price      float64
@@ -9,12 +11,24 @@ type Order struct {
 
 func NewOrder(id string, price float64, tax float64) (*Order, error) {
 	return &Order{
-		ID: id,
+		ID:    id,
 		Price: price,
-		Tax: tax,
+		Tax:   tax,
 	}, nil
 }
 
 func (o *Order) IsValid() error {
+	if o.ID == "" {
+		return errors.New("Invalid id")
+	}
+
+	if o.Price <= 0 {
+		return errors.New("Invalid price")
+	}
+
+	if o.Tax <= 0 {
+		return errors.New("Invalid tax")
+	}
+
 	return nil
 }

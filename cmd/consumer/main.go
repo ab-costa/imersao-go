@@ -4,6 +4,7 @@ import (
 	"database/sql"
 	"encoding/json"
 	"fmt"
+	"time"
 
 	"github.com/ab-costa/imersao-go/internal/order/infra/database"
 	"github.com/ab-costa/imersao-go/internal/order/pkg/rabbitmq"
@@ -57,5 +58,6 @@ func main() {
 
 		msg.Ack(false)
 		fmt.Println(outputDTO)
+		time.Sleep(500 * time.Millisecond)
 	}
 }

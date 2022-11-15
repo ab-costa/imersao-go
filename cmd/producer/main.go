@@ -3,6 +3,7 @@ package main
 import (
 	"encoding/json"
 	"math/rand"
+	"time"
 
 	"github.com/ab-costa/imersao-go/internal/order/entity"
 	"github.com/google/uuid"
@@ -60,7 +61,8 @@ func main() {
 
 	defer ch.Close()
 
-	for i := 0; i < 100; i++ {
+	for i := 0; i < 10000000; i++ {
 		Publish(ch, GenerateOrders())
+		time.Sleep(300 * time.Millisecond)
 	}
 }
